@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import pandas as pd
 
 cantidad_mes = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por mes")
-cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por día")
+cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por dia")
 
 app = FastAPI()
 
