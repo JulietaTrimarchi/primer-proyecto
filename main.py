@@ -1,9 +1,6 @@
 from fastapi import FastAPI
 import pandas as pd
 
-cantidad_mes = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por mes")
-cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por dia")
-
 app = FastAPI()
 
 @app.get("/filmaciones_mes")
@@ -19,9 +16,12 @@ async def cantidad_filmaciones_mes(mes:str) -> str:
         str: Mensaje con la cantidad de películas estrenadas o mensaje de error.
     """
 
+    # Almaceno en una variable la data necesaria
+
+    cantidad_mes = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por mes")
+
     mes = mes.lower()
 
-    
     # Filtro el DataFrame para encontrar el mes
 
     cantidad = cantidad_mes[cantidad_mes['name_month'].str.lower() == mes]
@@ -51,9 +51,12 @@ async def cantidad_filmaciones_dia(dia:str) -> str:
         str: Mensaje con la cantidad de películas estrenadas o mensaje de error.
     """
 
+    # Almaceno en una variable la data necesaria
+
+    cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por dia")
+
     dia = dia.lower()
 
-    
     # Filtro el DataFrame para encontrar el dia
 
     cantidad = cantidad_dia[cantidad_dia['release_day'].str.lower() == dia]
