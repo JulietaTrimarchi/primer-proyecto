@@ -20,7 +20,7 @@ async def cantidad_filmaciones_mes(mes:str) -> str:
 
     cantidad_mes = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por mes")
 
-    #mes = mes.lower()
+    mes = mes.lower()
 
     # Filtro el DataFrame para encontrar el mes
 
@@ -55,7 +55,7 @@ async def cantidad_filmaciones_dia(dia:str) -> str:
 
     cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por dia")
 
-    #dia = dia.lower()
+    dia = dia.lower()
 
     # Filtro el DataFrame para encontrar el dia
 
@@ -91,8 +91,8 @@ async def score_titulo(titulo:str) -> str:
     score = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Score")
 
     # Filtro el DataFrame para encontrar la película con el título proporcionado
-    score = score[score['title'] == titulo]
-    #score = score[score['title'].str.lower() == titulo.lower()]
+    
+    score = score[score['title'].str.lower() == titulo.lower()]
     
     # Verifico si se encontró la película
 
@@ -130,8 +130,8 @@ async def votos_titulo(titulo:str) -> str:
     votos = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Votos")
 
     # Filtro el DataFrame para encontrar la película con el título proporcionado
-    pelicula = votos[votos['title'] == titulo]
-    #pelicula = votos[votos['title'].str.lower() == titulo.lower()]
+    
+    pelicula = votos[votos['title'].str.lower() == titulo.lower()]
 
     # Verifico si se encontró la película
 
