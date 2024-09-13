@@ -1,11 +1,6 @@
 from fastapi import FastAPI
 import pandas as pd
 
-cantidad_mes = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por mes")
-cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por dia")
-score = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Score")
-votos = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Votos")
-
 app = FastAPI()
 
 @app.get("/filmaciones_mes")
@@ -23,7 +18,7 @@ async def cantidad_filmaciones_mes(mes:str) -> str:
 
     # Almaceno en una variable la data necesaria
 
-    cantidad_mes = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por mes")
+    cantidad_mes = pd.read_parquet("C:/Datasets/Peliculas por mes")
 
     mes = mes.lower()
 
@@ -58,7 +53,7 @@ async def cantidad_filmaciones_dia(dia:str) -> str:
 
     # Almaceno en una variable la data necesaria
 
-    cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por dia")
+    cantidad_dia = pd.read_parquet("C:/Datasets/Peliculas por dia")
 
     dia = dia.lower()
 
@@ -93,7 +88,7 @@ async def score_titulo(titulo:str) -> str:
 
     # Almaceno en una variable la data necesaria
 
-    score = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Score")
+    score = pd.read_parquet("C:/Datasets/Score")
 
     # Filtro el DataFrame para encontrar la película con el título proporcionado
     
@@ -132,7 +127,7 @@ async def votos_titulo(titulo:str) -> str:
 
     # Almaceno en una variable la data necesaria
 
-    votos = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Votos")
+    votos = pd.read_parquet("C:/Datasets/Votos")
 
     # Filtro el DataFrame para encontrar la película con el título proporcionado
     
