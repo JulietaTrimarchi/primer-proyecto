@@ -3,7 +3,7 @@ import pandas as pd
 
 app = FastAPI()
 
-@app.get("/filmaciones_mes")
+@app.get("/filmaciones_mes/{mes}")
 async def cantidad_filmaciones_mes(mes:str) -> str:
     
     """
@@ -16,9 +16,9 @@ async def cantidad_filmaciones_mes(mes:str) -> str:
         str: Mensaje con la cantidad de películas estrenadas o mensaje de error.
     """
 
-    # Almaceno en una variable la data necesaria
+    # Almaceno en una variable la data necesaria 
 
-    cantidad_mes = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por mes")
+    cantidad_mes = pd.read_parquet("./Datasets/Peliculas por mes")
 
     mes = mes.lower()
 
@@ -38,7 +38,7 @@ async def cantidad_filmaciones_mes(mes:str) -> str:
         return f"{cantidad} películas fueron estrenadas en el mes de {mes}"
     
 
-@app.get("/filmaciones_dia")
+@app.get("/filmaciones_dia/{dia}")
 async def cantidad_filmaciones_dia(dia:str) -> str:
     
     """
@@ -53,7 +53,7 @@ async def cantidad_filmaciones_dia(dia:str) -> str:
 
     # Almaceno en una variable la data necesaria
 
-    cantidad_dia = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Peliculas por dia")
+    cantidad_dia = pd.read_parquet("./Datasets/Peliculas por dia")
 
     dia = dia.lower()
 
@@ -73,7 +73,7 @@ async def cantidad_filmaciones_dia(dia:str) -> str:
         return f"{cantidad} películas fueron estrenadas en los días {dia}"
 
 
-@app.get("/score_titulo")
+@app.get("/score_titulo/{titulo}")
 async def score_titulo(titulo:str) -> str:
     
     """
@@ -88,7 +88,7 @@ async def score_titulo(titulo:str) -> str:
 
     # Almaceno en una variable la data necesaria
 
-    score = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Score")
+    score = pd.read_parquet("./Datasets/Score")
 
     # Filtro el DataFrame para encontrar la película con el título proporcionado
     
@@ -112,7 +112,7 @@ async def score_titulo(titulo:str) -> str:
         return "La película no se ha encontrado."
 
 
-@app.get("/votos_titulo")
+@app.get("/votos_titulo/{titulo}")
 async def votos_titulo(titulo:str) -> str:
     
     """
@@ -127,7 +127,7 @@ async def votos_titulo(titulo:str) -> str:
 
     # Almaceno en una variable la data necesaria
 
-    votos = pd.read_parquet("C:/Users/Juli/Desktop/Data Science/Proyecto individual I Machine Learning/Datasets/Votos")
+    votos = pd.read_parquet("./Datasets/Votos")
 
     # Filtro el DataFrame para encontrar la película con el título proporcionado
     
