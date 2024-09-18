@@ -3,3 +3,5 @@ pandas
 uvicorn
 pyarrow
 scikit-learn
+nltk
+langdetect
