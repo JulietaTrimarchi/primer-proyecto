@@ -1,6 +1,6 @@
-                                                        # **Proyecto Individual N° 1**
+                                                         **Proyecto Individual N° 1**
 
-                                                   ## **Machine Learning Operations (MLOps)**
+                                                     **Machine Learning Operations (MLOps)**
 
 ### Contexto
 
