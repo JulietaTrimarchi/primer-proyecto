@@ -1,5 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import pandas as pd
+import joblib
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -156,3 +158,42 @@ async def votos_titulo(titulo:str) -> str:
         
     else:
         return "La película no ha sido encontrada."
+    
+
+
+@app.get("/peliculas recomendadas/{titulo}")
+async def recomendacion(titulo:str) -> list:
+
+    """Devuelve una lista de las 5 películas más similares.
+
+    Args:
+        titulo (str): Título de una película.
+
+    Returns:
+        list: Lista de 5 películas recomendadas.
+    """
+    # Importo ruta de datos necesarios
+    data = pd.read_parquet("./Datasets/Data para modelo")
+    recomendaciones = joblib.load('./Datasets/recomendaciones.pkl') 
+
+    # Convertir el título a minúsculas
+    titulo_lower = titulo.strip().lower()
+
+    data['title_lower'] = data['title'].str.lower().str.strip()
+    # Buscar el índice de la película con el título dado
+    
+    if titulo_lower not in data['title_lower'].values:
+        raise HTTPException(status_code=404, detail="Película no encontrada")
+    
+    idx = data[data['title_lower'] == titulo_lower].index[0]
+    
+    # Obtener las recomendaciones usando el índice
+    if idx not in recomendaciones:
+        raise HTTPException(status_code=404, detail="No hay recomendaciones disponibles para esta película.")
+    
+    recommended_indices = recomendaciones[idx]
+    
+    # Convertir los índices recomendados en títulos
+    recommended_titles = data.loc[data.index.isin(recommended_indices),'title'].tolist()
+    
+    return {"recomendaciones": recommended_titles}
