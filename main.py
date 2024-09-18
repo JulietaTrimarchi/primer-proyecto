@@ -159,9 +159,10 @@ async def votos_titulo(titulo:str) -> str:
     else:
         return "La película no ha sido encontrada."
     
+data = pd.read_parquet("./Datasets/Data para modelo")
+recomendaciones = joblib.load('./Datasets/recomendaciones.pkl') 
 
-
-@app.get("/peliculas recomendadas/{titulo}")
+@app.get("/peliculas_recomendadas/{titulo}")
 async def recomendacion(titulo:str) -> list:
 
     """Devuelve una lista de las 5 películas más similares.
